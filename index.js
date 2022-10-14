@@ -1,9 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import { router } from "./routers/router.js";
-
+import cors from "cors";
 //CREATE APP AND ENABLE .ENV FICLES
 const app = express();
+app.use(cors());
 dotenv.config();
 
 //MIDDLEWARE OF EXPRESS

@@ -10,8 +10,8 @@ const getAllProducts = async () => {
 const getProductByName = async (name) => {
   const conexion = getConexion();
   let query = (await conexion).query(
-    "SELECT * FROM `bsale_test`.`product`WHERE `name`= ?",
-    [name.replaceAll("_", " ")]
+    "SELECT * FROM `bsale_test`.`product` WHERE `name` LIKE ? ",
+    ["%" + name.replaceAll("_", " ") + "%"]
   );
   let [results] = await query;
   if (results.length != 0) {

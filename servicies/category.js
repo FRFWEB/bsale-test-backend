@@ -10,4 +10,11 @@ const getCategoryByName = async (name) => {
   return JSON.stringify(results);
 };
 
-export { getCategoryByName };
+const getAllCategory = async () => {
+  const conexion = getConexion();
+  let query = (await conexion).query("SELECT * FROM `bsale_test`.`category`");
+  let [results] = await query;
+  return JSON.stringify(results);
+};
+
+export { getCategoryByName, getAllCategory };
