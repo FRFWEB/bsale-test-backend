@@ -1,4 +1,8 @@
-import { getAllProducts, getProductByName } from "../servicies/products.js";
+import {
+  getAllProducts,
+  getProductByName,
+  getProductBetweenName,
+} from "../servicies/products.js";
 
 const getProducts = (req, res) => {
   let data = getAllProducts();
@@ -23,4 +27,16 @@ const getProduct = (req, res) => {
     });
 };
 
-export { getProducts, getProduct };
+const getProductsBetween = (req, res) => {
+  let { name } = req.params;
+  let data = getProductBetweenName(name);
+  data
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+export { getProducts, getProduct, getProductsBetween };

@@ -1,5 +1,9 @@
 import express from "express";
-import { getProducts, getProduct } from "../controller/productsController.js";
+import {
+  getProducts,
+  getProduct,
+  getProductsBetween,
+} from "../controller/productsController.js";
 import { getCategory, getCategorys } from "../controller/categoryController.js";
 
 //CREATE ROUTER
@@ -8,6 +12,7 @@ const router = express.Router();
 //API REST PRODUCTS
 router.get("/products", getProducts);
 router.get("/product/:name", getProduct);
+router.get("/product/findIn/:name", getProductsBetween);
 
 //API REST CATEGORY
 router.get("/category/:name", getCategory);
