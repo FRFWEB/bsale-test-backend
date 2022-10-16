@@ -9,11 +9,14 @@ const getAllProducts = async () => {
 };
 
 const getProductByName = async (name) => {
+  let cleanName = name.replaceAll(
+    /(\*|!|#|\$|[¿^ºª?]|[(]|[)]|"|<|\/|>|-|%|{|}|[+]|[\]|[\\]|[.]|_)/g,
+    " "
+  );
+  console.log(cleanName);
   const conexion = getConexion();
   let query = (await conexion).query(
-    `SELECT * FROM bsale_test.product WHERE name LIKE "${
-      "%" + name.replaceAll("_", " ") + "%"
-    }" `
+    `SELECT * FROM bsale_test.product WHERE name LIKE "%${cleanName.trimEnd()}%" `
   );
   let [results] = await query;
   if (results.length != 0) {
@@ -29,12 +32,10 @@ const getProductBetweenName = async (name) => {
   let getNamesProdutcs = getNamesValues
     .map((nameValue) => '"' + nameValue.product.trim() + '"')
     .join(",");
-  let getIdProdutcs = getNamesValues.map((nameValue) => nameValue.productId);
   let query = (await conexion).query(
     `SELECT * FROM bsale_test.product WHERE name IN (${getNamesProdutcs}) `
   );
   let [results] = await query;
-  console.log(results);
   if (results.length != 0) {
     (await conexion).end();
     return JSON.stringify(results);

@@ -5,7 +5,7 @@ const getCategory = (req, res) => {
   let data = getCategoryByName(name);
   data
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((e) => {
       console.log(e);
@@ -16,7 +16,7 @@ const getCategorys = (req, res) => {
   let data = getAllCategory();
   data
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((e) => {
       console.log(e);

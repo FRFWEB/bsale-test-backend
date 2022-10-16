@@ -10,6 +10,8 @@ async function getConexion() {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAM,
     Promise: bluebird,
+    connectTimeout: 30000,
+    port: process.env.DB_PORT,
   });
   return connection;
 }

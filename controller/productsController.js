@@ -8,7 +8,7 @@ const getProducts = (req, res) => {
   let data = getAllProducts();
   data
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((e) => {
       console.log(e);
@@ -20,7 +20,7 @@ const getProduct = (req, res) => {
   let data = getProductByName(name);
   data
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((e) => {
       console.log(e);
@@ -32,7 +32,7 @@ const getProductsBetween = (req, res) => {
   let data = getProductBetweenName(name);
   data
     .then((data) => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((e) => {
       console.log(e);
